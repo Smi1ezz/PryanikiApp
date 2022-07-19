@@ -91,12 +91,11 @@ extension MainViewController: UITableViewDataSource {
         return feedStorage.count
     }
     
-    //Print something else
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
         let cell = tableView.cellForRow(at: indexPath)
-        print("\(String(describing: cell))")
+        print("TableView row \(indexPath.row) tapped. Here is \(cell?.reuseIdentifier ?? "")")
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

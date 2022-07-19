@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import Alamofire
 
 protocol NetworkManagerProtocol {
     func fetchData<T: Codable>(endpoint: Endpoint, modelType: T.Type, complition: @escaping (ObtainedResults)->Void)
@@ -21,57 +22,37 @@ enum ObtainedResults {
 class NetworkManager: NetworkManagerProtocol {
     func fetchData<T: Codable>(endpoint: Endpoint, modelType: T.Type, complition: @escaping (ObtainedResults)->Void) {
         
-        let session = URLSession.shared
+        guard let urlString = endpoint.strURL else {
+            return
+        }
         
-        guard let url = endpoint.url else { return }
-        
-        session.dataTask(with: url) { data, resp, error in
-            var result: ObtainedResults
-            let decoder = JSONDecoder()
-            
-            defer {
-                DispatchQueue.main.async {
-                    complition(result)
-                }
-            }
-            
-            guard error == nil, let data = data else {
-                result = .failure(error: error!)
-                return
-            }
-            
-            do {
-                let resultOfRequest = try decoder.decode(modelType.self, from: data)
-                print("Получена модель \(modelType)")
-                result = .success(result: resultOfRequest)
-            } catch {
-                result = .failure(error: error)
+        AF.request(urlString).validate().responseDecodable(of: modelType.self) { result in
+            switch result.result {
+            case .success(let feed):
+                complition(.success(result: feed))
+            case .failure(let error):
+                complition(.failure(error: error))
             }
         }
-        .resume()
     }
     
     func getImage(fromURL: String?, complition: @escaping (Swift.Result<UIImage, Error>) -> Void) {
-        let session = URLSession.shared
+        
         guard let url = fromURL else {
             return
         }
-
-        guard let url = URL(string: url) else {
-            return
-        }
         
-        session.dataTask(with: url) { data, _, error in
-            if error == nil, let parsData = data {
-                guard let image = UIImage(data: parsData) else {
+        AF.request(url).validate().responseData { data in
+            switch data.result {
+            case .success(let data):
+                guard let image = UIImage(data: data) else {
                     return
                 }
                 complition(.success(image))
-            } else {
-                complition(.failure(error!))
+            case .failure(let error):
+                complition(.failure(error))
             }
         }
-        .resume()
     }
     
 }

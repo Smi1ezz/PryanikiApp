@@ -16,13 +16,12 @@
 		84D2378D2885A24800FFEB31 /* TextOnlyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D2378C2885A24800FFEB31 /* TextOnlyTableViewCell.swift */; };
 		84D2378F2885A25400FFEB31 /* PictureTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D2378E2885A25400FFEB31 /* PictureTableViewCell.swift */; };
 		84D237912885A26400FFEB31 /* VariableTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D237902885A26400FFEB31 /* VariableTableViewCell.swift */; };
-		84D237962885A2C700FFEB31 /* PictureViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D237952885A2C700FFEB31 /* PictureViewModel.swift */; };
-		84D237982885A2D500FFEB31 /* VariableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D237972885A2D500FFEB31 /* VariableViewModel.swift */; };
 		84D2379A2885A2FF00FFEB31 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D237992885A2FF00FFEB31 /* NetworkManager.swift */; };
 		84D2379D2885A37200FFEB31 /* FeedModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D2379C2885A37200FFEB31 /* FeedModel.swift */; };
 		84D2379F2886833200FFEB31 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D2379E2886833200FFEB31 /* Endpoint.swift */; };
 		84D237A62886A23100FFEB31 /* FeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D237A52886A23100FFEB31 /* FeedViewModel.swift */; };
 		84D237A92886EAEB00FFEB31 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 84D237A82886EAEB00FFEB31 /* SnapKit */; };
+		84D237AC28870EE600FFEB31 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 84D237AB28870EE600FFEB31 /* Alamofire */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,9 +36,6 @@
 		84D2378C2885A24800FFEB31 /* TextOnlyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextOnlyTableViewCell.swift; sourceTree = "<group>"; };
 		84D2378E2885A25400FFEB31 /* PictureTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureTableViewCell.swift; sourceTree = "<group>"; };
 		84D237902885A26400FFEB31 /* VariableTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VariableTableViewCell.swift; sourceTree = "<group>"; };
-		84D237942885A29D00FFEB31 /* TextOnlyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextOnlyViewModel.swift; sourceTree = "<group>"; };
-		84D237952885A2C700FFEB31 /* PictureViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureViewModel.swift; sourceTree = "<group>"; };
-		84D237972885A2D500FFEB31 /* VariableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VariableViewModel.swift; sourceTree = "<group>"; };
 		84D237992885A2FF00FFEB31 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		84D2379C2885A37200FFEB31 /* FeedModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedModel.swift; sourceTree = "<group>"; };
 		84D2379E2886833200FFEB31 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
@@ -52,6 +48,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				84D237A92886EAEB00FFEB31 /* SnapKit in Frameworks */,
+				84D237AC28870EE600FFEB31 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -110,9 +107,6 @@
 		84D2378728858E7900FFEB31 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				84D237942885A29D00FFEB31 /* TextOnlyViewModel.swift */,
-				84D237952885A2C700FFEB31 /* PictureViewModel.swift */,
-				84D237972885A2D500FFEB31 /* VariableViewModel.swift */,
 				84D237A52886A23100FFEB31 /* FeedViewModel.swift */,
 			);
 			path = ViewModels;
@@ -164,6 +158,7 @@
 			name = pryanikyTestApp;
 			packageProductDependencies = (
 				84D237A82886EAEB00FFEB31 /* SnapKit */,
+				84D237AB28870EE600FFEB31 /* Alamofire */,
 			);
 			productName = pryanikyTestApp;
 			productReference = 84D23764288584D700FFEB31 /* pryanikyTestApp.app */;
@@ -195,6 +190,7 @@
 			mainGroup = 84D2375B288584D700FFEB31;
 			packageReferences = (
 				84D237A72886EAEB00FFEB31 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				84D237AA28870EE600FFEB31 /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			productRefGroup = 84D23765288584D700FFEB31 /* Products */;
 			projectDirPath = "";
@@ -223,7 +219,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				84D23768288584D700FFEB31 /* AppDelegate.swift in Sources */,
-				84D237962885A2C700FFEB31 /* PictureViewModel.swift in Sources */,
 				84D2379D2885A37200FFEB31 /* FeedModel.swift in Sources */,
 				84D2379A2885A2FF00FFEB31 /* NetworkManager.swift in Sources */,
 				84D2378D2885A24800FFEB31 /* TextOnlyTableViewCell.swift in Sources */,
@@ -233,7 +228,6 @@
 				84D2378B28858EBD00FFEB31 /* ResponseModel.swift in Sources */,
 				84D2377C2885861100FFEB31 /* MainViewController.swift in Sources */,
 				84D2379F2886833200FFEB31 /* Endpoint.swift in Sources */,
-				84D237982885A2D500FFEB31 /* VariableViewModel.swift in Sources */,
 				84D237A62886A23100FFEB31 /* FeedViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -454,6 +448,14 @@
 				minimumVersion = 5.0.0;
 			};
 		};
+		84D237AA28870EE600FFEB31 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -461,6 +463,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 84D237A72886EAEB00FFEB31 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
+		};
+		84D237AB28870EE600FFEB31 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 84D237AA28870EE600FFEB31 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

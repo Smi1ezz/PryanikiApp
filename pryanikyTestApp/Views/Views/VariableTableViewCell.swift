@@ -53,7 +53,6 @@ class VariableTableViewCell: UITableViewCell {
 
         }
     }
-
 }
 
 extension VariableTableViewCell: UIPickerViewDelegate {
@@ -62,6 +61,10 @@ extension VariableTableViewCell: UIPickerViewDelegate {
 
 extension VariableTableViewCell: UIPickerViewDataSource {
 
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        print("picker row \(row) selected")
+    }
+    
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }

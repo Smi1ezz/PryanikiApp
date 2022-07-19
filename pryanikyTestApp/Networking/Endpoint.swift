@@ -7,14 +7,6 @@
 
 import Foundation
 
-enum MyUrlError: Error {
-    case wrongUrlError
-    
-    var descr: String {
-        return "Wrong url. Correct endpoint"
-    }
-}
-
 enum Endpoint {
     case getPryanikySampleJSON
     
@@ -47,36 +39,18 @@ enum Endpoint {
         }
     }
     
-    var url: URL? {
-        do {
-            let url = try makeURL()
-            return url
-        } catch {
-            print("\(error.localizedDescription)")
-            return nil
-        }
+    var strURL: String? {
+        return makeStringURL()
     }
     
-    var request: URLRequest? {
-        guard let url = self.url else {
-            return nil
-        }
-        var request = URLRequest(url: url)
-        request.httpMethod = "GET"
-        request.allHTTPHeaderFields = headers
-        return request
-    }
-    
-    private func makeURL() throws -> URL {
+    private func makeStringURL() -> String? {
         var urlComponents = URLComponents()
         urlComponents.scheme = scheme
         urlComponents.host = host
         urlComponents.path = path
         urlComponents.queryItems = parameters
-        guard let url = urlComponents.url else {
-            throw MyUrlError.wrongUrlError
-        }
-        return url
+        
+        return urlComponents.string
     }
     
 }
