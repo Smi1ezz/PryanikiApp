@@ -17,7 +17,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let mainScene = (scene as? UIWindowScene) else { return }
         
         let mainWindow = UIWindow(windowScene: mainScene)
-        mainWindow.rootViewController = MainViewController()
+        
+        let networker = NetworkManager()
+        
+        let model = FeedModel(networkManager: networker)
+        
+        let viewModel = FeedViewModel(feedModel: model)
+                
+        mainWindow.rootViewController = MainViewController(feedableViewModel: viewModel)
         mainWindow.makeKeyAndVisible()
         window = mainWindow
     }
