@@ -21,7 +21,6 @@ class MainViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .red
         setTableView()
         setupSubviews()
         startSpinner()
@@ -29,7 +28,6 @@ class MainViewController: UIViewController {
             DispatchQueue.main.async { [weak self] in
                 self?.feedStorage = recivedCellsTypes
                 self?.tableView.reloadData()
-                self?.view.backgroundColor = .blue
                 self?.stopSpinner()
             }
         })
