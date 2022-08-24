@@ -28,7 +28,8 @@ enum Endpoint {
     var path: String {
         switch self {
         case .getPryanikySampleJSON:
-            return "/static/json/sample.json"
+//            return "/static/json/sample.json"
+            return "/json/data-custom-selected-id.json"
         }
     }
     

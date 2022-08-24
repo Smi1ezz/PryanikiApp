@@ -22,9 +22,11 @@ enum ObtainedResults {
 class NetworkManager: NetworkManagerProtocol {
     func fetchData<T: Codable>(endpoint: Endpoint, modelType: T.Type, complition: @escaping (ObtainedResults)->Void) {
         
-        guard let urlString = endpoint.strURL else {
+        guard var urlString = endpoint.strURL else {
             return
         }
+        
+        urlString = "https://chat.pryaniky.com/json/data-custom-selected-id.json"
         
         AF.request(urlString).validate().responseDecodable(of: modelType.self) { result in
             switch result.result {

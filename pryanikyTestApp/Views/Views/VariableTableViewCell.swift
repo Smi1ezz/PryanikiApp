@@ -35,8 +35,11 @@ class VariableTableViewCell: UITableViewCell {
         guard let selected = storage.selectedID else {
             return
         }
+        
+        var selRow = storage.variants
 
-        picker.selectRow(selected-1, inComponent: 0, animated: true)
+//        picker.selectRow(selected-1, inComponent: 0, animated: true)
+//        picker.selectRow(storage.variants?.index(after: 0), inComponent: 0, animated: true)
     }
     
     private func setupSubviews() {
@@ -70,10 +73,14 @@ extension VariableTableViewCell: UIPickerViewDataSource {
     }
 
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        
         return storage?.variants?.count ?? 3
     }
 
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        if storage?.selectedID == storage?.variants![row].id {
+            picker.selectRow(Int(row), inComponent: 0, animated: true)
+        }
         return storage?.variants?[row].text ?? "none"
     }
     

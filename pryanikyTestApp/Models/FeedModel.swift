@@ -28,6 +28,7 @@ class FeedModel: FeedModelProtocol {
             
             switch result {
             case .failure(error: let error):
+                //модель бы обрабатывала ошибку
                 print("\(error)")
             case .success(result: let feed):
                 complition(feed)

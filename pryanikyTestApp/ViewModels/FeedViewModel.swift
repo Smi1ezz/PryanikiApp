@@ -28,6 +28,7 @@ class FeedViewModel: FeedableViewModel {
     }
     
     func startFeed(complition: @escaping ([CellType])->Void) {
+        //только говорит, чтобы модель получла и обработала дату
         feedModel.fetchData(complition: { [weak self] result in
             guard let recivedData = result as? RecivedData else {
                 return
@@ -49,7 +50,7 @@ class FeedViewModel: FeedableViewModel {
     
     private func sortFeedsToView(fromData feed: RecivedData) -> [CellType] {
         var feeds = [CellType]()
-        
+        //тут идет отбор видов ячеек по названиям в данном массиве для отображения в нужном порядке
         feed.view.forEach({ name in
             feed.data.forEach({ cell in
                 if cell.name == name {
