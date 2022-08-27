@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 protocol TextResponse {
     var text: String? {get set}
@@ -17,6 +18,16 @@ protocol PictureResponse {
 }
 
 protocol VariantsResponse {
+    var selectedID: Int? {get set}
+    var variants: [Variant]? {get set}
+}
+
+protocol VideoResponse {
+    var selectedID: Int? {get set}
+    var variants: [Variant]? {get set}
+}
+
+protocol SoundResponse {
     var selectedID: Int? {get set}
     var variants: [Variant]? {get set}
 }
@@ -34,17 +45,21 @@ struct CellType: Codable {
 }
 
 // MARK: - Content
-struct Content: Codable, TextResponse, PictureResponse, VariantsResponse {
+struct Content: Codable, TextResponse, PictureResponse, VariantsResponse, VideoResponse, SoundResponse {
     var text: String?
     var url: String?
     var selectedID: Int?
     var variants: [Variant]?
+    var coverUrl: String?
+    var mediaUrl: String?
 
     enum CodingKeys: String, CodingKey {
         case text
         case url
         case selectedID = "selectedId"
         case variants
+        case coverUrl
+        case mediaUrl
     }
 }
 

@@ -22,13 +22,16 @@ enum ObtainedResults {
 class NetworkManager: NetworkManagerProtocol {
     func fetchData<T: Codable>(endpoint: Endpoint, modelType: T.Type, complition: @escaping (ObtainedResults)->Void) {
         
-        guard var urlString = endpoint.strURL else {
+        guard let urlString = endpoint.strURL else {
             return
         }
         
-        urlString = "https://chat.pryaniky.com/json/data-custom-selected-id.json"
+        //Создаю request без кэша, чтобы убедиться, что response всегда будет с запроса, а не из кэша. Просто для чистоты теста
+        let url = URL(string: urlString)
         
-        AF.request(urlString).validate().responseDecodable(of: modelType.self) { result in
+        let req = URLRequest(url: url!, cachePolicy: .reloadIgnoringLocalAndRemoteCacheData, timeoutInterval: 1)
+         
+        AF.request(req).validate().responseDecodable(of: modelType.self) { result in
             switch result.result {
             case .success(let feed):
                 complition(.success(result: feed))

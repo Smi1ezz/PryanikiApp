@@ -21,7 +21,7 @@ class FeedModel: FeedModelProtocol {
     }
     
     func fetchData(complition: @escaping (Codable) -> Void) {
-        let endpoint: Endpoint = .getPryanikySampleJSON
+        let endpoint: Endpoint = .getPryanikiChatCustomData
         let modelType = RecivedData.self
         
         networkManager.fetchData(endpoint: endpoint, modelType: modelType, complition: { result in

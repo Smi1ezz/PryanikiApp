@@ -12,6 +12,8 @@ enum FeedMembers: String {
     case text = "hz"
     case picture = "picture"
     case selector = "selector"
+    case video = "video"
+    case audio = "audio"
 }
 
 protocol FeedableViewModel {
@@ -33,11 +35,9 @@ class FeedViewModel: FeedableViewModel {
             guard let recivedData = result as? RecivedData else {
                 return
             }
-            
             guard let cellTypesToView = self?.sortFeedsToView(fromData: recivedData) else {
                 return
             }
-            
             complition(cellTypesToView)
         })
     }
