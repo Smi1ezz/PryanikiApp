@@ -32,8 +32,9 @@ class VideoTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setupWithData(data: PictureResponse) {
+    func setupWithData(data: VideoResponse) {
         videoNameLabel.text = data.text
+        
     }
     
     func setupWithImg(_ img: UIImage?) {

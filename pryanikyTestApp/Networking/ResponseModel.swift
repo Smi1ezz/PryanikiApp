@@ -23,13 +23,16 @@ protocol VariantsResponse {
 }
 
 protocol VideoResponse {
-    var selectedID: Int? {get set}
-    var variants: [Variant]? {get set}
+    var text: String? {get}
+    var url: String? {get}
+    var coverUrl: String? {get}
+    var mediaUrl: String? {get}
 }
 
-protocol SoundResponse {
-    var selectedID: Int? {get set}
-    var variants: [Variant]? {get set}
+protocol AudioResponse {
+    var text: String? {get}
+    var coverUrl: String? {get}
+    var mediaUrl: String? {get}
 }
 
 // MARK: - RecivedData
@@ -45,7 +48,7 @@ struct CellType: Codable {
 }
 
 // MARK: - Content
-struct Content: Codable, TextResponse, PictureResponse, VariantsResponse, VideoResponse, SoundResponse {
+struct Content: Codable, TextResponse, PictureResponse, VariantsResponse, VideoResponse, AudioResponse {
     var text: String?
     var url: String?
     var selectedID: Int?

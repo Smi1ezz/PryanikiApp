@@ -30,7 +30,7 @@ class AudioTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setupWithData(data: PictureResponse) {
+    func setupWithData(data: AudioResponse) {
         audioNameLabel.text = data.text
     }
     
