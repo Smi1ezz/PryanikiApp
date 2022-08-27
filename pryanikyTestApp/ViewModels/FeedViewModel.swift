@@ -12,6 +12,8 @@ enum FeedMembers: String {
     case text = "hz"
     case picture = "picture"
     case selector = "selector"
+    case video = "video"
+    case audio = "audio"
 }
 
 protocol FeedableViewModel {
@@ -28,15 +30,14 @@ class FeedViewModel: FeedableViewModel {
     }
     
     func startFeed(complition: @escaping ([CellType])->Void) {
+        //только говорит, чтобы модель получла и обработала дату
         feedModel.fetchData(complition: { [weak self] result in
             guard let recivedData = result as? RecivedData else {
                 return
             }
-            
             guard let cellTypesToView = self?.sortFeedsToView(fromData: recivedData) else {
                 return
             }
-            
             complition(cellTypesToView)
         })
     }
@@ -49,7 +50,7 @@ class FeedViewModel: FeedableViewModel {
     
     private func sortFeedsToView(fromData feed: RecivedData) -> [CellType] {
         var feeds = [CellType]()
-        
+        //тут идет отбор видов ячеек по названиям в данном массиве для отображения в нужном порядке
         feed.view.forEach({ name in
             feed.data.forEach({ cell in
                 if cell.name == name {

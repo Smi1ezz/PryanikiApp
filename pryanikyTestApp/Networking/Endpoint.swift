@@ -8,13 +8,18 @@
 import Foundation
 
 enum Endpoint {
-    case getPryanikySampleJSON
+    case getPryanikySampleJSON, getPryanikiChatMoreItemsInData, getPryanikiChatCustomData
     
     var headers: [String:String] {
         switch self {
         case .getPryanikySampleJSON:
             return ["":""]
+        case .getPryanikiChatMoreItemsInData:
+            return ["":""]
+        case .getPryanikiChatCustomData:
+            return ["":""]
         }
+        
     }
     
     var scheme: String {
@@ -22,19 +27,34 @@ enum Endpoint {
     }
     
     var host: String {
-        return "pryaniky.com"
+        switch self {
+        case .getPryanikySampleJSON:
+            return "pryaniky.com"
+        case .getPryanikiChatMoreItemsInData:
+            return "chat.pryaniky.com"
+        case .getPryanikiChatCustomData:
+            return "chat.pryaniky.com"
+        }
     }
     
     var path: String {
         switch self {
         case .getPryanikySampleJSON:
             return "/static/json/sample.json"
+        case .getPryanikiChatMoreItemsInData:
+            return "/json/data-custom-order-much-more-items-in-data.json"
+        case .getPryanikiChatCustomData:
+            return "/json/data-default-order-custom-data-in-view.json"
         }
     }
     
     var parameters: [URLQueryItem] {
         switch self {
         case .getPryanikySampleJSON:
+            return []
+        case .getPryanikiChatMoreItemsInData:
+            return []
+        case .getPryanikiChatCustomData:
             return []
         }
     }

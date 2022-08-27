@@ -26,7 +26,12 @@ class NetworkManager: NetworkManagerProtocol {
             return
         }
         
-        AF.request(urlString).validate().responseDecodable(of: modelType.self) { result in
+        //Создаю request без кэша, чтобы убедиться, что response всегда будет с запроса, а не из кэша. Просто для чистоты теста
+        let url = URL(string: urlString)
+        
+        let req = URLRequest(url: url!, cachePolicy: .reloadIgnoringLocalAndRemoteCacheData, timeoutInterval: 1)
+         
+        AF.request(req).validate().responseDecodable(of: modelType.self) { result in
             switch result.result {
             case .success(let feed):
                 complition(.success(result: feed))

@@ -15,6 +15,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         guard let mainScene = (scene as? UIWindowScene) else { return }
         
+        
+        
         let mainWindow = UIWindow(windowScene: mainScene)
         
         let networker = NetworkManager()

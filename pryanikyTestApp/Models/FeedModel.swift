@@ -21,13 +21,14 @@ class FeedModel: FeedModelProtocol {
     }
     
     func fetchData(complition: @escaping (Codable) -> Void) {
-        let endpoint: Endpoint = .getPryanikySampleJSON
+        let endpoint: Endpoint = .getPryanikiChatCustomData
         let modelType = RecivedData.self
         
         networkManager.fetchData(endpoint: endpoint, modelType: modelType, complition: { result in
             
             switch result {
             case .failure(error: let error):
+                //модель бы обрабатывала ошибку
                 print("\(error)")
             case .success(result: let feed):
                 complition(feed)

@@ -31,6 +31,8 @@ class MainViewController: UIViewController {
                 self?.stopSpinner()
             }
         })
+        
+        
     }
     
     init(feedableViewModel: FeedableViewModel) {
@@ -49,6 +51,8 @@ class MainViewController: UIViewController {
         tableView.register(TextOnlyTableViewCell.self, forCellReuseIdentifier: "TextOnlyTableViewCell")
         tableView.register(PictureTableViewCell.self, forCellReuseIdentifier: "PictureTableViewCell")
         tableView.register(VariableTableViewCell.self, forCellReuseIdentifier: "VariableTableViewCell")
+        tableView.register(VideoTableViewCell.self, forCellReuseIdentifier: "VideoTableViewCell")
+        tableView.register(AudioTableViewCell.self, forCellReuseIdentifier: "AudioTableViewCell")
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 20
         
@@ -97,7 +101,6 @@ extension MainViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         let feed = feedStorage[indexPath.row]
         
         if feed.name == FeedMembers.text.rawValue {
@@ -126,9 +129,63 @@ extension MainViewController: UITableViewDataSource {
             cell.setupWithData(data: feed.data)
             return cell
         }
+        else if feed.name == FeedMembers.video.rawValue {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "VideoTableViewCell", for: indexPath) as? VideoTableViewCell else {
+                return UITableViewCell()
+            }
+            cell.setupWithData(data: feed.data)
+            feedableViewModel.fetchImage(fromURL: feed.data.coverUrl, complition: { img in
+                DispatchQueue.main.async {
+                    cell.setupWithImg(img)
+                }
+            })
+        
+            return cell
+        }
+        else if feed.name == FeedMembers.audio.rawValue {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "AudioTableViewCell", for: indexPath) as? AudioTableViewCell else {
+                return UITableViewCell()
+            }
+            cell.setupWithData(data: feed.data)
+            feedableViewModel.fetchImage(fromURL: feed.data.coverUrl, complition: { img in
+                DispatchQueue.main.async {
+                    cell.setupWithImg(img)
+                }
+            })
+            return cell
+        }
         
         return UITableViewCell()
         
     }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let rowsCount = tableView.numberOfRows(inSection: 0)
+        guard rowsCount > 0, rowsCount - indexPath.row < 3 else { return }
         
+        feedableViewModel.startFeed(complition: { recivedCellsTypes in
+            DispatchQueue.main.async { [weak self] in
+                self?.feedStorage += recivedCellsTypes
+                self?.tableView.reloadData()
+                self?.stopSpinner()
+            }
+        })
+        
+        guard let videoCell = (cell as? VideoTableViewCell) else {
+            return
+        }
+
+        let visibleCells = tableView.visibleCells
+        let minIndex = visibleCells.startIndex
+        if tableView.visibleCells.firstIndex(of: cell) == minIndex {
+            videoCell.play(fromUrl: feedStorage[indexPath.row].data.mediaUrl)
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        guard let videoCell = cell as? VideoTableViewCell else { return };
+        
+        videoCell.stop()
+    }
+    
 }

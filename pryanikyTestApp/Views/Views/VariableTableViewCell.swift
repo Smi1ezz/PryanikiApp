@@ -8,8 +8,12 @@
 import UIKit
 
 class VariableTableViewCell: UITableViewCell {
-    
-    private var storage: VariantsResponse?
+        
+    private var storage: VariantsResponse? {
+        didSet {
+            picker.reloadAllComponents()
+        }
+    }
     
     private let picker: UIPickerView = {
        let picker = UIPickerView()
@@ -27,16 +31,13 @@ class VariableTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+//        Else we can fix it here
+    override func prepareForReuse() {
+//        picker.reloadAllComponents()
+    }
+    
     func setupWithData(data: VariantsResponse) {
         storage = data
-        guard let storage = storage else {
-            return
-        }
-        guard let selected = storage.selectedID else {
-            return
-        }
-
-        picker.selectRow(selected-1, inComponent: 0, animated: true)
     }
     
     private func setupSubviews() {
@@ -70,10 +71,14 @@ extension VariableTableViewCell: UIPickerViewDataSource {
     }
 
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        
         return storage?.variants?.count ?? 3
     }
 
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        if storage?.selectedID == storage?.variants![row].id {
+            picker.selectRow(Int(row), inComponent: 0, animated: true)
+        }
         return storage?.variants?[row].text ?? "none"
     }
     
