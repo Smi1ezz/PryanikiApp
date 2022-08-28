@@ -17,20 +17,20 @@ enum FeedMembers: String {
 }
 
 protocol FeedableViewModel {
-    func startFeed(complition: @escaping ([CellType])->Void)
-    func fetchImage(fromURL: String?, complition: @escaping (UIImage)->Void)
+    func startFeed(complition: @escaping ([CellType]) -> Void)
+    func fetchImage(fromURL: String?, complition: @escaping (UIImage) -> Void)
 }
 
 class FeedViewModel: FeedableViewModel {
-    
+
     private var feedModel: FeedModelProtocol
-        
+
     init(feedModel: FeedModelProtocol) {
         self.feedModel = feedModel
     }
-    
-    func startFeed(complition: @escaping ([CellType])->Void) {
-        //только говорит, чтобы модель получла и обработала дату
+
+    func startFeed(complition: @escaping ([CellType]) -> Void) {
+        // только говорит, чтобы модель получла и обработала дату
         feedModel.fetchData(complition: { [weak self] result in
             guard let recivedData = result as? RecivedData else {
                 return
@@ -41,16 +41,16 @@ class FeedViewModel: FeedableViewModel {
             complition(cellTypesToView)
         })
     }
-    
+
     func fetchImage(fromURL: String?, complition: @escaping (UIImage) -> Void) {
         feedModel.getImage(url: fromURL) { image in
             complition(image)
         }
     }
-    
+
     private func sortFeedsToView(fromData feed: RecivedData) -> [CellType] {
         var feeds = [CellType]()
-        //тут идет отбор видов ячеек по названиям в данном массиве для отображения в нужном порядке
+        // тут идет отбор видов ячеек по названиям в данном массиве для отображения в нужном порядке
         feed.view.forEach({ name in
             feed.data.forEach({ cell in
                 if cell.name == name {
@@ -58,8 +58,8 @@ class FeedViewModel: FeedableViewModel {
                 }
             })
         })
-        
+
         return feeds
     }
-    
+
 }

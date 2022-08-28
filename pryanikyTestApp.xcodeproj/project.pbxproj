@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		847463B528BA664C00461F2E /* VideoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847463B428BA664C00461F2E /* VideoTableViewCell.swift */; };
 		847463B928BA68EE00461F2E /* AudioTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847463B828BA68EE00461F2E /* AudioTableViewCell.swift */; };
+		847463BD28BB679C00461F2E /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847463BC28BB679C00461F2E /* PlayerView.swift */; };
 		84D23768288584D700FFEB31 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D23767288584D700FFEB31 /* AppDelegate.swift */; };
 		84D2376A288584D700FFEB31 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D23769288584D700FFEB31 /* SceneDelegate.swift */; };
 		84D23771288584DA00FFEB31 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84D23770288584DA00FFEB31 /* Assets.xcassets */; };
@@ -29,6 +30,7 @@
 /* Begin PBXFileReference section */
 		847463B428BA664C00461F2E /* VideoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoTableViewCell.swift; sourceTree = "<group>"; };
 		847463B828BA68EE00461F2E /* AudioTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioTableViewCell.swift; sourceTree = "<group>"; };
+		847463BC28BB679C00461F2E /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
 		84D23764288584D700FFEB31 /* pryanikyTestApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = pryanikyTestApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84D23767288584D700FFEB31 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		84D23769288584D700FFEB31 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -132,6 +134,7 @@
 				84D237902885A26400FFEB31 /* VariableTableViewCell.swift */,
 				847463B428BA664C00461F2E /* VideoTableViewCell.swift */,
 				847463B828BA68EE00461F2E /* AudioTableViewCell.swift */,
+				847463BC28BB679C00461F2E /* PlayerView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -156,6 +159,7 @@
 				84D23760288584D700FFEB31 /* Sources */,
 				84D23761288584D700FFEB31 /* Frameworks */,
 				84D23762288584D700FFEB31 /* Resources */,
+				847463BF28BB808700461F2E /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -219,6 +223,26 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		847463BF28BB808700461F2E /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "swiftlint autocorrect\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		84D23760288584D700FFEB31 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -233,6 +257,7 @@
 				847463B528BA664C00461F2E /* VideoTableViewCell.swift in Sources */,
 				84D2376A288584D700FFEB31 /* SceneDelegate.swift in Sources */,
 				84D237912885A26400FFEB31 /* VariableTableViewCell.swift in Sources */,
+				847463BD28BB679C00461F2E /* PlayerView.swift in Sources */,
 				84D2378B28858EBD00FFEB31 /* ResponseModel.swift in Sources */,
 				84D2377C2885861100FFEB31 /* MainViewController.swift in Sources */,
 				84D2379F2886833200FFEB31 /* Endpoint.swift in Sources */,

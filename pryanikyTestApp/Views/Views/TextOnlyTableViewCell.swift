@@ -8,30 +8,32 @@
 import UIKit
 
 class TextOnlyTableViewCell: UITableViewCell {
-    
+
     private let blockLabel: UILabel = {
         let label = UILabel()
         return label
     }()
-    
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupSubviews()
+
     }
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+
     }
-    
+
     func setupWithData(data: TextResponse) {
         blockLabel.text = data.text
     }
-    
+
     private func setupSubviews() {
         contentView.addSubview(blockLabel)
         setupConstraints()
     }
-    
+
     private func setupConstraints() {
         blockLabel.snp.makeConstraints { make in
             make.top.equalTo(contentView.snp.top).offset(10)
@@ -39,7 +41,7 @@ class TextOnlyTableViewCell: UITableViewCell {
             make.trailing.equalTo(contentView.snp.trailing).offset(-15)
             make.bottom.equalTo(contentView.snp.bottom).offset(-10)
         }
-        
+
     }
 
 }

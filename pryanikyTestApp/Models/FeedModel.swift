@@ -9,34 +9,34 @@ import Foundation
 import UIKit
 
 protocol FeedModelProtocol {
-    func fetchData(complition: @escaping (Codable)->Void)
-    func getImage(url: String?, complition: @escaping (UIImage)->Void)
+    func fetchData(complition: @escaping (Codable) -> Void)
+    func getImage(url: String?, complition: @escaping (UIImage) -> Void)
 }
 
 class FeedModel: FeedModelProtocol {
     private let networkManager: NetworkManagerProtocol
-    
+
     init(networkManager: NetworkManagerProtocol) {
         self.networkManager = networkManager
     }
-    
+
     func fetchData(complition: @escaping (Codable) -> Void) {
         let endpoint: Endpoint = .getPryanikiChatCustomData
         let modelType = RecivedData.self
-        
+
         networkManager.fetchData(endpoint: endpoint, modelType: modelType, complition: { result in
-            
+
             switch result {
             case .failure(error: let error):
-                //модель бы обрабатывала ошибку
+                // модель бы обрабатывала ошибку
                 print("\(error)")
             case .success(result: let feed):
                 complition(feed)
             }
-            
+
         })
     }
-    
+
     func getImage(url: String?, complition: @escaping (UIImage) -> Void) {
         networkManager.getImage(fromURL: url) { result in
             switch result {

@@ -9,23 +9,23 @@ import Foundation
 
 enum Endpoint {
     case getPryanikySampleJSON, getPryanikiChatMoreItemsInData, getPryanikiChatCustomData
-    
-    var headers: [String:String] {
+
+    var headers: [String: String] {
         switch self {
         case .getPryanikySampleJSON:
-            return ["":""]
+            return ["": ""]
         case .getPryanikiChatMoreItemsInData:
-            return ["":""]
+            return ["": ""]
         case .getPryanikiChatCustomData:
-            return ["":""]
+            return ["": ""]
         }
-        
+
     }
-    
+
     var scheme: String {
         return "https"
     }
-    
+
     var host: String {
         switch self {
         case .getPryanikySampleJSON:
@@ -36,7 +36,7 @@ enum Endpoint {
             return "chat.pryaniky.com"
         }
     }
-    
+
     var path: String {
         switch self {
         case .getPryanikySampleJSON:
@@ -47,7 +47,7 @@ enum Endpoint {
             return "/json/data-default-order-custom-data-in-view.json"
         }
     }
-    
+
     var parameters: [URLQueryItem] {
         switch self {
         case .getPryanikySampleJSON:
@@ -58,19 +58,19 @@ enum Endpoint {
             return []
         }
     }
-    
+
     var strURL: String? {
         return makeStringURL()
     }
-    
+
     private func makeStringURL() -> String? {
         var urlComponents = URLComponents()
         urlComponents.scheme = scheme
         urlComponents.host = host
         urlComponents.path = path
         urlComponents.queryItems = parameters
-        
+
         return urlComponents.string
     }
-    
+
 }
